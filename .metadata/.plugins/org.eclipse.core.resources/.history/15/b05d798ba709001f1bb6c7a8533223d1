@@ -1,0 +1,7 @@
+package EjBasicoDelLenguaje;
+
+import java.lang.runtime.ObjectMethods;
+
+public class EjDos extends ObjectMethods {
+
+}
