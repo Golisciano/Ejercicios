@@ -1,0 +1,9 @@
+/*
+ * Crear un programa que calcule e informe el factorial de un número n. El factorial de un
+número n es: n! = 1 x 2 x 3 x ... x n.
+ */
+package EjEstructuraArregloExcepcionesNivelBasico;
+
+public class EjNueve {
+
+}
