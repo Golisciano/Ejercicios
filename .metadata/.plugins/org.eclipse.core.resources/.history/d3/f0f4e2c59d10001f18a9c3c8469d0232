@@ -1,0 +1,10 @@
+/*
+ * Crear un programa que pida 10 números enteros al usuario, los guarde en un vector, y
+finalmente muestre los datos del vector indicando los índices correspondientes a cada
+valor.
+ */
+package EjArreglosNivelInicial;
+
+public class EjUno {
+
+}

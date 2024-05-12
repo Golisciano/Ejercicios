@@ -1,0 +1,9 @@
+/*
+ * Crear un programa que llene un arreglo con cinco números enteros consecutivos y
+haga una copia de ese arreglo en otro.
+ */
+package EjArreglosNivelInicial;
+
+public class EjCinco {
+
+}
