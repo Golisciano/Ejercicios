@@ -1,0 +1,58 @@
+/*
+ * Se dispone de una máquina expendedora de café que acepta y da vueltos en monedas
+de 2 pesos, 1 peso, 50 centavos, 25 centavos, 1 centavos y 5 centavos. Realizar un
+programa que dado el precio del café a consumir y la cantidad de dinero entregada por
+el consumidor, informe el vuelto a entregar empleando la menor cantidad de monedas
+posibles. Debe verificar que el precio del café pueda pagarse con las monedas
+expuestas y que el usuario no ingrese monedas demás.
+ */
+package EjEstructuraNivelMedio;
+
+import java.util.Scanner;
+
+public class EjSiete {
+
+
+	    public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
+
+	        // Definir los valores de las monedas
+	        int[] valoresMonedas = {200, 100, 50, 25, 10, 5}; // Valores en centavos
+	        String[] nombresMonedas = {"2 pesos", "1 peso", "50 centavos", "25 centavos", "10 centavos", "5 centavos"};
+
+	        // Pedir el precio del café
+	        System.out.println("Ingrese el precio del café:");
+	        int precioCafe = scanner.nextInt();
+
+	        // Verificar que el precio del café sea válido
+	        if (precioCafe <= 0 || precioCafe % 5 != 0) {
+	            System.out.println("Precio inválido. El precio debe ser mayor que cero y múltiplo de 5.");
+	            return;
+	        }
+
+	        // Pedir la cantidad de dinero entregada por el consumidor
+	        System.out.println("Ingrese la cantidad de dinero entregada:");
+	        int dineroEntregado = scanner.nextInt();
+
+	        // Calcular el vuelto
+	        int vuelto = dineroEntregado - precioCafe;
+
+	        // Verificar si el dinero entregado es suficiente
+	        if (vuelto < 0) {
+	            System.out.println("El dinero entregado no es suficiente.");
+	            return;
+	        }
+
+	        // Mostrar el vuelto en la menor cantidad de monedas posibles
+	        System.out.println("El vuelto a entregar es:");
+
+	        for (int i = 0; i < valoresMonedas.length; i++) {
+	            int cantidadMonedas = vuelto / valoresMonedas[i];
+	            vuelto %= valoresMonedas[i];
+	            if (cantidadMonedas > 0) {
+	                System.out.println(cantidadMonedas + " " + nombresMonedas[i]);
+	            }
+	        }
+	    }
+
+

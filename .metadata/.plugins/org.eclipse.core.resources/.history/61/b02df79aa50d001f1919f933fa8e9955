@@ -1,0 +1,38 @@
+/*
+ * Realizar una calculadora en la cual se deberá ingresar una expresión, se analizará si la
+expresión ingresada es válida y se resuelva dicha expresión. Las operaciones de la
+calculadora son: Suma, resta, multiplicación, división, potenciación y radicación.
+ */
+package EjEstructuraNivelAvanzado;
+
+import java.util.Scanner;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+public class EjCuatro {
+
+
+	    public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
+	        System.out.println("Ingrese una expresión matemática:");
+	        String expresion = scanner.nextLine();
+	        
+	        // Crear un gestor de motores de script
+	        ScriptEngineManager manager = new ScriptEngineManager();
+	        // Obtener un motor de script para JavaScript
+	        ScriptEngine engine = manager.getEngineByName("JavaScript");
+	        
+	        try {
+	            // Evaluar la expresión
+	            Object resultado = engine.eval(expresion);
+	            // Imprimir el resultado
+	            System.out.println("El resultado es: " + resultado);
+	        } catch (ScriptException e) {
+	            // Capturar y manejar errores de sintaxis en la expresión
+	            System.out.println("Error: La expresión ingresada no es válida.");
+	        }
+	    }
+	}
+

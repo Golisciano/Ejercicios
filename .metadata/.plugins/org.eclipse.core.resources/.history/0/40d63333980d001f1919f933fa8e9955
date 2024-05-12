@@ -1,0 +1,88 @@
+/*
+ * Corre el año 2133. La tierra ha sido invadida por seres alienígenos, encabezados por su
+terrible y malvado líder “Noicamargorp”, quien lo mantiene cautivo a usted en una
+celda custodiada por el androide 620109. A su lado, se encuentra el cuerpo inerte de
+un ex-prisionero, que fue capturado mucho antes que usted. Entre sus pertenencias,
+usted encuentra la clave para desactivar a 620109 y así escapar y salvar a la humanidad
+del cruel “Noicamargorp” (de quien se dice se encarga de destruir principalmente a
+estudiantes de programación, con sus sádicos “Senemaxe”). En el manuscrito, se señala
+que para desactivar a 620109 es necesario ingresar la cantidad de pasos necesarios
+para reducir exactamente N números, los cuales van apareciendo en la pantalla del
+androide, siguiendo la siguiente regla:
+ Si el número es par, dividirlo en dos.
+ Si el número es impar, multiplicarlo por tres y sumarle 1.
+Se debe repetir este proceso hasta que el número ingresado se transforme en 1.
+Para poder solucionar el problema, usted deberá escribir un algoritmo que le permita
+ingresar N números enteros mayores o iguales a 1 (en caso de ingreso de un número
+menor que 1, se debe imprimir un mensaje de error), aplicar la regla anterior, mostrar
+los resultados parciales, y calcular la cantidad de pasos necesarios para convertir cada
+número en 1. Finalmente, deberá mostrar el número total de pasos necesarios para
+convertir en 1 cada uno de los N números ingresados. Por ejemplo, la salida para la
+primera iteración de su programa, suponiendo que el número ingresado es 20 sería:
+Valor inicial: 20
+Valor siguiente: 10
+Valor siguiente: 5
+Valor siguiente: 16
+Valor siguiente: 8
+Valor siguiente: 4
+Valor siguiente: 2
+Valor siguiente: 1
+Valor final es 1, numero de pasos necesarios: 7
+Esta salida se genera por cada uno de los N números ingresados, y al final, se debe
+mostrar la suma de todos los pasos necesarios.
+ */
+package EjEstructuraNivelMedio;
+
+import java.util.Scanner;
+
+public class EjCatorce {
+
+
+	    public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
+
+	        System.out.println("Ingrese la cantidad de números a procesar:");
+	        int n = scanner.nextInt();
+
+	        int totalPasos = 0;
+
+	        for (int i = 0; i < n; i++) {
+	            System.out.println("Ingrese un número entero mayor o igual a 1:");
+	            int numero = scanner.nextInt();
+
+	            if (numero < 1) {
+	                System.out.println("El número ingresado debe ser mayor o igual a 1. Inténtelo de nuevo.");
+	                continue;
+	            }
+
+	            int pasos = calcularPasos(numero);
+	            totalPasos += pasos;
+
+	            System.out.println("Valor inicial: " + numero);
+	            System.out.println("Número de pasos necesarios para convertirlo en 1: " + pasos);
+	            System.out.println();
+	        }
+
+	        System.out.println("Número total de pasos necesarios para convertir todos los números en 1: " + totalPasos);
+
+	        scanner.close();
+	    }
+
+	    public static int calcularPasos(int numero) {
+	        int pasos = 0;
+
+	        while (numero != 1) {
+	            if (numero % 2 == 0) {
+	                numero /= 2;
+	            } else {
+	                numero = numero * 3 + 1;
+	            }
+	            pasos++;
+	            System.out.println("Valor siguiente: " + numero);
+	        }
+
+	        return pasos;
+	    }
+	}
+
+}

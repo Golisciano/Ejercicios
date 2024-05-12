@@ -1,0 +1,11 @@
+/*
+ * Realizar un programa que genere un calendario. Se debe pedir al usuario que ingrese la
+fecha actual en formato dd mm aaaa, y mediante este se debe generar el calendario
+mostrando todos los días del mes actual. Así mismo debe existir un menú con las
+opciones ingresar fecha, mes siguiente, mes anterior y salir.
+ */
+package EjEstructuraNivelMedio;
+
+public class EjNueve {
+
+}

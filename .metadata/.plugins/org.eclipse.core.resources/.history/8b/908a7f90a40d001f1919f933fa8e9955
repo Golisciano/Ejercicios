@@ -1,0 +1,114 @@
+package EjEstructuraNivelAvanzado;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class EjDos {
+
+	    
+	    static class Mujer {
+	        String nombre;
+	        String trabajo;
+
+	        public Mujer(String nombre) {
+	            this.nombre = nombre;
+	        }
+
+	        public void asignarTrabajo(String trabajo) {
+	            this.trabajo = trabajo;
+	        }
+
+	        @Override
+	        public String toString() {
+	            return nombre + " trabaja como " + trabajo;
+	        }
+	    }
+
+	    public static void main(String[] args) {
+	        String[] nombres = {"Clara", "Luisa", "María", "Nélida"};
+	        String[] trabajos = {"diseñadora de moda", "florista", "jardinera", "directora de orquesta"};
+	        
+	        // Generar todas las posibles permutaciones de los trabajos
+	        permute(trabajos, 0, new Mujer[4]);
+	    }
+
+	    // Función para generar todas las posibles permutaciones de los trabajos
+	    static void permute(String[] trabajos, int indice, Mujer[] mujeres) {
+	        if (indice == mujeres.length) {
+	            // Verificar las pistas
+	            if (pistasCumplidas(mujeres)) {
+	                // Imprimir la solución
+	                for (Mujer mujer : mujeres) {
+	                    System.out.println(mujer);
+	                }
+	                System.out.println();
+	            }
+	            return;
+	        }
+	        
+	        // Probar todas las combinaciones posibles para el trabajo actual
+	        for (String trabajo : trabajos) {
+	            if (!yaAsignado(mujeres, trabajo)) {
+	                mujeres[indice] = new Mujer("Mujer " + (indice + 1));
+	                mujeres[indice].asignarTrabajo(trabajo);
+	                permute(trabajos, indice + 1, mujeres);
+	            }
+	        }
+	    }
+
+	    // Función para verificar si un trabajo ya está asignado a alguna mujer
+	    static boolean yaAsignado(Mujer[] mujeres, String trabajo) {
+	        for (Mujer mujer : mujeres) {
+	            if (mujer != null && mujer.trabajo != null && mujer.trabajo.equals(trabajo)) {
+	                return true;
+	            }
+	        }
+	        return false;
+	    }
+
+	    // Función para verificar si se cumplen todas las pistas
+	    static boolean pistasCumplidas(Mujer[] mujeres) {
+	        // (a) Clara es violentamente alérgica a las plantas
+	        for (Mujer mujer : mujeres) {
+	            if (mujer.nombre.equals("Clara") && mujer.trabajo.equals("jardinera")) {
+	                return false;
+	            }
+	        }
+
+	        // (b) Luisa y la florista comparten el departamento
+	        boolean luisaEncontrada = false;
+	        boolean floristaEncontrada = false;
+	        for (Mujer mujer : mujeres) {
+	            if (mujer.trabajo.equals("florista")) {
+	                floristaEncontrada = true;
+	            } else if (mujer.nombre.equals("Luisa")) {
+	                luisaEncontrada = true;
+	            }
+	        }
+	        if (!luisaEncontrada || !floristaEncontrada) {
+	            return false;
+	        }
+
+	        // (c) A María y Luisa les gusta solamente la música rock
+	        for (Mujer mujer : mujeres) {
+	            if ((mujer.nombre.equals("María") || mujer.nombre.equals("Luisa")) && !mujer.trabajo.equals("directora de orquesta")) {
+	                return false;
+	            }
+	        }
+
+	        // (d) La jardinera, la diseñadora de modas y Nélida no se conocen entre sí
+	        for (Mujer mujer : mujeres) {
+	            if (mujer.trabajo.equals("jardinera") || mujer.trabajo.equals("diseñadora de moda") || mujer.nombre.equals("Nélida")) {
+	                for (Mujer otraMujer : mujeres) {
+	                    if (otraMujer != mujer && (otraMujer.trabajo.equals("jardinera") || otraMujer.trabajo.equals("diseñadora de moda") || otraMujer.nombre.equals("Nélida"))) {
+	                        return false;
+	                    }
+	                }
+	            }
+	        }
+
+	        return true;
+	    }
+	}
+
+

@@ -1,0 +1,15 @@
+/*
+ * Crear un programa que adivine un número entre 1 y 1000 pensado por el usuario. El
+programa debe ir mostrando números y el usuario debe responder a cada número con
+un símbolo “>”, “<” o “=”, según el número pensado sea menor, mayor o igual que el
+mostrado por la computadora. Cuando se adivine el número se deberá mostrar un
+mensaje especificando cuantas preguntas ha necesitado para adivinar el número. No se
+debe realizar más de 10 preguntas, y se debe detectar si el usuario está haciendo
+trampa respondiendo con imposibles, como por ejemplo, es mayor que 4 y menor que
+5.
+ */
+package EjEstructuraNivelMedio;
+
+public class EjCinco {
+
+}

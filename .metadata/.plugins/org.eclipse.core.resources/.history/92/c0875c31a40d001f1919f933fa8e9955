@@ -1,0 +1,93 @@
+package EjEstructuraNivelAvanzado;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class EjDos {
+
+
+	    static class Mujer {
+	        String nombre;
+	        String trabajo;
+
+	        public Mujer(String nombre) {
+	            this.nombre = nombre;
+	        }
+
+	        @Override
+	        public String toString() {
+	            return nombre + " trabaja como " + trabajo;
+	        }
+	    }
+
+	    public static void main(String[] args) {
+	        String[] nombres = {"Clara", "Luisa", "María", "Nélida"};
+	        String[] trabajos = {"diseñadora de moda", "florista", "jardinera", "directora de orquesta"};
+
+	        // Generar todas las posibles permutaciones de trabajos
+	        permute(trabajos, 0, trabajos.length - 1, nombres);
+	    }
+
+	    static void permute(String[] trabajos, int l, int r, String[] nombres) {
+	        if (l == r) {
+	            Mujer[] mujeres = new Mujer[4];
+	            for (int i = 0; i < nombres.length; i++) {
+	                mujeres[i] = new Mujer(nombres[i]);
+	                mujeres[i].trabajo = trabajos[i];
+	            }
+	            if (esValido(mujeres)) {
+	                for (Mujer mujer : mujeres) {
+	                    System.out.println(mujer);
+	                }
+	                System.out.println();
+	            }
+	        } else {
+	            for (int i = l; i <= r; i++) {
+	                swap(trabajos, l, i);
+	                permute(trabajos, l + 1, r, nombres);
+	                swap(trabajos, l, i);
+	            }
+	        }
+	    }
+
+	    static void swap(String[] trabajos, int i, int j) {
+	        String temp = trabajos[i];
+	        trabajos[i] = trabajos[j];
+	        trabajos[j] = temp;
+	    }
+
+	    static boolean esValido(Mujer[] mujeres) {
+	        // (a) Clara es violentamente alérgica a las plantas.
+	        for (Mujer mujer : mujeres) {
+	            if (mujer.nombre.equals("Clara") && mujer.trabajo.equals("jardinera")) {
+	                return false;
+	            }
+	        }
+	        // (b) Luisa y la florista comparten el departamento
+	        boolean luisaFlorista = false;
+	        for (Mujer mujer : mujeres) {
+	            if (mujer.nombre.equals("Luisa") && mujer.trabajo.equals("florista")) {
+	                luisaFlorista = true;
+	            }
+	        }
+	        if (!luisaFlorista) {
+	            return false;
+	        }
+	        // (c) A María y Luisa les gusta solamente la música rock
+	        for (Mujer mujer : mujeres) {
+	            if ((mujer.nombre.equals("María") || mujer.nombre.equals("Luisa"))
+	                    && !mujer.trabajo.equals("directora de orquesta")) {
+	                return false;
+	            }
+	        }
+	        // (d) La jardinera, la diseñadora de modas y Nélida no se conocen entre sí
+	        for (Mujer mujer : mujeres) {
+	            if ((mujer.nombre.equals("Nélida") || mujer.trabajo.equals("diseñadora de moda")
+	                    || mujer.trabajo.equals("jardinera")) && mujer.trabajo.equals("jardinera")) {
+	                return false;
+	            }
+	        }
+	        return true;
+	    }
+	}
+

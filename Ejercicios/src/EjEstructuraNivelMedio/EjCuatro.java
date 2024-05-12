@@ -1,0 +1,56 @@
+/*
+ * Modificar el ejercicio No20 de los ejercicios nivel básico, de modo que, para calcular el
+total, se pida ingresar el IVA, pudiendo ser este de un 4%, 7%, 16% o 21%, y en
+cualquier otro caso, se deberá rechazar el IVA y volver a pedirlo.
+Además se debe aplicar un descuento, en función a la suma de los importes, siendo de
+un 0% si el importe final es menor a 1000, de un 5% si el importe final es mayor o igual
+que 1000 y menor que 10000, y de un 10% si el importe final es mayor o igual que
+10000. El descuento se debe aplicar al importe final a pagar con IVA incluido.
+Para finalizar se debe imprimir por pantalla el IVA a pagar en porcentaje y valor, el total
+a pagar sin IVA y sin descuentos, el total a pagar con IVA y sin descuentos, el descuento
+realizado, y el importe total a pagar con IVA y con el descuento realizado.
+ */
+package EjEstructuraNivelMedio;
+
+import java.util.Scanner;
+
+public class EjCuatro {
+
+
+	    public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
+	        
+	        double importeTotal;
+	        do {
+	            System.out.println("Ingrese el importe total:");
+	            importeTotal = scanner.nextDouble();
+	        } while (importeTotal <= 0);
+
+	        double iva;
+	        do {
+	            System.out.println("Ingrese el porcentaje de IVA (4%, 7%, 16% o 21%):");
+	            iva = scanner.nextDouble();
+	        } while (iva != 4 && iva != 7 && iva != 16 && iva != 21);
+
+	        double descuento;
+	        if (importeTotal < 1000) {
+	            descuento = 0;
+	        } else if (importeTotal < 10000) {
+	            descuento = 0.05;
+	        } else {
+	            descuento = 0.10;
+	        }
+
+	        double totalSinIVA = importeTotal / (1 + (iva / 100));
+	        double totalConIVA = importeTotal;
+	        double descuentoAplicado = totalConIVA * descuento;
+	        double totalConDescuento = totalConIVA - descuentoAplicado;
+
+	        System.out.println("IVA a pagar: " + iva + "% (" + (totalConIVA - totalSinIVA) + ")");
+	        System.out.println("Total a pagar sin IVA y sin descuentos: " + totalSinIVA);
+	        System.out.println("Total a pagar con IVA y sin descuentos: " + totalConIVA);
+	        System.out.println("Descuento realizado: " + descuentoAplicado);
+	        System.out.println("Total a pagar con IVA y con descuento: " + totalConDescuento);
+	    }
+	}
+

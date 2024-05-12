@@ -1,0 +1,19 @@
+/*
+ * Crear un programa que permita al usuario ingresar las coordenadas “x” e “y” de 10
+puntos del plano, cuyos valores serán en punto flotante y deben ser distintos a 0.
+Determinar e informar:
+ Para cada punto ingresado, las coordenadas y el cuadrante en donde se haya
+ubicado.
+ En cual o cuales cuadrantes no se encontró ningún punto.
+ En que cuadrante se ubica el punto que tiene la máxima distancia al origen de
+coordenadas.
+ Dibujar mediante caracteres el sistema de coordenadas y los puntos en sus
+correspondientes coordenadas, siempre y cuando ninguna coordenada supere
+los valores 50 en x tanto como en y. Dibujar en color rojo el punto que tiene la
+máxima distancia al origen de coordenadas.
+ */
+package EjEstructuraNivelMedio;
+
+public class EjDoce {
+
+}

@@ -1,0 +1,67 @@
+/*
+ * Realizar un programa para resolver el siguiente problema: Un granjero, un lobo, una
+gallina y un saco de maíz deben cruzar el río. Para ello se dispone de un bote con una
+capacidad de dos ocupantes, el hombre (el único que sabe remar) y otro. Si de un lado
+del rio se quedan solos el lobo y la gallina, el lobo se come a la gallina. Si en una orilla se
+quedan solos la gallina y el maíz, la gallina se come al maíz.
+ */
+package EjEstructuraNivelAvanzado;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.Set;
+
+
+
+	public class CruzarRio {
+	    public static void main(String[] args) {
+	        // Inicialización del problema
+	        boolean[][] visitado = new boolean[2][2]; // Para almacenar los estados visitados
+	        Stack<int[]> pila = new Stack<>(); // Para almacenar los movimientos del granjero
+
+	        // Estado inicial: (0, 0) indica que el granjero, el lobo, la gallina y el saco de maíz están en la orilla inicial
+	        pila.push(new int[] {0, 0, 0, 0});
+
+	        // Búsqueda en profundidad
+	        while (!pila.isEmpty()) {
+	            int[] estado = pila.pop(); // Obtener el estado actual
+	            int granjero = estado[0], lobo = estado[1], gallina = estado[2], maiz = estado[3];
+
+	            // Verificar si el estado actual es una solución
+	            if (granjero == 1 && lobo == 1 && gallina == 1 && maiz == 1) {
+	                // Mostrar la solución
+	                System.out.println("Solución encontrada:");
+	                mostrarPasos(pila);
+	                break;
+	            }
+
+	            // Mover al granjero y un acompañante a la otra orilla
+	            for (int i = 0; i < 2; i++) {
+	                for (int j = 0; j < 2; j++) {
+	                    if ((i == 0 && j == 0) || (i == 1 && j == 1) || (i == j && i == granjero)) {
+	                        // No se puede dejar al lobo con la gallina o a la gallina con el maíz en ninguna orilla sin la presencia del granjero
+	                        continue;
+	                    }
+	                    // Mover al granjero y un acompañante
+	                    int[] nuevoEstado = {i, j, lobo, gallina, maiz};
+	                    if (!visitado[i][j]) {
+	                        visitado[i][j] = true;
+	                        pila.push(nuevoEstado);
+	                    }
+	                }
+	            }
+	        }
+	    }
+
+	    // Método para mostrar los pasos de la solución
+	    private static void mostrarPasos(Stack<int[]> pila) {
+	        while (!pila.isEmpty()) {
+	            int[] paso = pila.pop();
+	            System.out.println(Arrays.toString(paso));
+	        }
+	    }
+	}
+

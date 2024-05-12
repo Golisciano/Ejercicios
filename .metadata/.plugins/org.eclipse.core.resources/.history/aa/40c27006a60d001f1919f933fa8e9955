@@ -1,0 +1,10 @@
+/*
+ * Se sabe que el operador << desplaza dos bits hacia la izquierda, por lo que si se realiza
+por ejemplo 2<<2 se obtiene como resultado 8. Al hacer 2 << -2 el resultado es
+-2147483648, y al hacer 12<<-2 el resultado es 0. ¿Por qué sucede esto?
+ */
+package EjEstructuraNivelAvanzado;
+
+public class EjCinco {
+
+}
